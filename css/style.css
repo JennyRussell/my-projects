@@ -1,0 +1,197 @@
+:root {
+--riptide: rgb(148,233,220);
+--royal-blue: rgb(76,106,224);
+--french-rose: rgb(249,81,126);
+--valhalla:rgb(43,22,83);
+}
+
+::selection {
+    background-color: var(--french-rose);
+    color: var(--valhalla);
+}
+
+html{
+    font-size: 65%;
+}
+
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.75rem;
+    line-height: 1.5;
+    color: var(--royal-blue);
+    background-color: var(--riptide);
+    }
+
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+       margin-bottom: 0.635rem; 
+       color: var(--french-rose);
+       font-weight: 700;
+       line-height: 1.1;
+    }
+
+    h1 {
+        /* 4rem = 40px (4 * 10px) */
+        font-size: 4rem;
+      }
+      
+      h2 {
+        font-size: 3.5rem;
+        font-family: fantasy;
+      }
+      
+      h3 {
+        font-size: 3rem;
+      }
+      
+      h4 {
+        font-size: 2.5rem;
+      }
+      
+      h5 {
+        font-size: 2rem;
+      }
+      
+      h6 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+        font-family: monospace;
+      }
+
+      header {
+        width: 96%;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      header h1.page-title{
+          font-size: 4.5rem;
+          font-family:fantasy;
+          padding: 1rem 1.2rem;
+      }
+
+      main {
+        width: 96%;
+        margin: 2rem auto;   
+      }
+
+      footer {
+        margin: 1.5rem;
+        text-align: center;
+      }
+
+      /* create our main grid with flexbox, use negative margins to offset the padding on the .card-column class */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; 
+    margin-left: -1.5rem;
+    margin-right: -1.5rem; 
+  }
+
+
+  .justify-center {
+    justify-content: center;
+  }
+
+  /* using a mobile-first approach, set base column width to be 100% and we'll update it using media queries for larger screen sizes */
+.card-column {
+  flex: 1 0 100%;
+  padding: 1.5rem;
+  /* when the screen resizes, make it so our columns don't jump in size */
+  transition: flex-basis 500ms linear;
+  margin-bottom: 1.5rem;
+ 
+}
+
+/* make each code card a flexbox column to align and justify content within it */
+.family-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100%;
+  padding: 2rem;
+  color: var(--royal-blue);
+
+  /* outline is like border, but on the outside of the box instead of inside */
+  outline: 2px dashed var(--royal-blue);
+  outline-offset: -2px;
+  transition: all 0.5s ease-in-out;
+  
+}
+
+.family-card .card-header {
+    /* use position and negative margins to move title of card over the card's outline and create an overlap effect */
+    position: relative;
+    margin: -4rem 0 1.5rem 0;
+    padding: 0.5rem 1rem;
+    background-color: var(--valhalla);
+    color: var(--french-rose);
+    border: 2px solid var(--royal-blue);
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  /* set an outer and inner drop shadow on the card to create a glowing effect on hover */
+.family-card:hover,
+.family-card:hover .card-header {
+  box-shadow: inset 0px 0px 8px var(--valhalla), 0 0 15px var(--french-rose);
+}
+
+/* each card's code block grows to the height of the largest code block on the page, making each card even in height */
+.family-card .list-of-hobbies {
+  flex-grow: 1;
+}
+
+.family-card ul{
+    /* set styles to make it so code wraps in <pre> instead of overflowing */
+    list-style: none;
+    tab-size: 4;
+    padding: 1.2rem 1rem;
+    color: var(--valhalla);
+    border-radius: 8px;
+    /* use linear-gradient() function to create a fading background  */
+    background-image: linear-gradient(
+    var(--riptide) 0%,
+    var(--royal-blue) 100%
+    );
+    
+}
+
+.family-card ul:active {
+    user-select: all;
+  }
+
+/* using a mobile-first approach, use `min-width` values going from narrow -> wide for a responsive design */
+@media screen and (min-width: 768px) {
+    /* on tablets, set columns to only be 50% of the width and not grow */
+    .card-column {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  
+    /* select the last child to grow to full width if it has space to grow */
+    .card-column:last-child {
+      flex-grow: 1;
+    }
+  }
+  
+  /* media query for larger screens */
+  @media screen and (min-width: 992px) {
+    header {
+      width: 75%;
+    }
+  
+    .card-column {
+      flex: 0 0 33.333%;
+      max-width: 33.333%;
+    }
+  }
